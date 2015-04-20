@@ -14,16 +14,17 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class VazhnoAPIRequest {
-    private static final String API_URL = "http://api.vazhno.me";
+    private static final String API_URL = "https://api.vazhno.me";
     private static final Logger log = Logger.getLogger(VazhnoAPIRequest.class);
 
     private final Map<String, String> data;
+    private final ObjectMapper mapper = new ObjectMapper();
 
     private VazhnoAPIRequest(Map<String, String> data) {
         this.data = data;
     }
 
-    public <T> T send(Class<T> clazz) throws VazhnoAPIException {
+    public <T extends VazhnoAPIResponse> T send(Class<T> clazz) throws VazhnoAPIException {
         try {
             StringBuilder query = new StringBuilder();
             Iterator<Map.Entry<String, String>> iterator = data.entrySet().iterator();
@@ -38,9 +39,14 @@ public class VazhnoAPIRequest {
             URL url = new URL(API_URL + "?" + query.toString());
             URLConnection connection = url.openConnection();
             InputStream stream = connection.getInputStream();
-            ObjectMapper mapper = new ObjectMapper();
             JsonNode node = mapper.readTree(stream);
             log.debug(url.toString() + " -> " + node.toString());
+
+            VazhnoAPIResponse resp = mapper.treeToValue(node, clazz);
+            if (resp.error) {
+                resp = mapper.treeToValue(node, VazhnoAPIResponse.Error.class);
+                throw new VazhnoAPIException((VazhnoAPIResponse.Error) resp);
+            }
             return mapper.treeToValue(node, clazz);
         } catch (IOException e) {
             throw new VazhnoAPIException(e);
