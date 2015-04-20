@@ -42,12 +42,12 @@ public class VazhnoAPIRequest {
             JsonNode node = mapper.readTree(stream);
             log.debug(url.toString() + " -> " + node.toString());
 
-            VazhnoAPIResponse resp = mapper.treeToValue(node, clazz);
+            T resp = mapper.treeToValue(node, clazz);
             if (resp.error) {
-                resp = mapper.treeToValue(node, VazhnoAPIResponse.Error.class);
-                throw new VazhnoAPIException((VazhnoAPIResponse.Error) resp);
+                VazhnoAPIResponse.Error error = mapper.treeToValue(node, VazhnoAPIResponse.Error.class);
+                throw new VazhnoAPIException(error);
             }
-            return mapper.treeToValue(node, clazz);
+            return resp;
         } catch (IOException e) {
             throw new VazhnoAPIException(e);
         }
