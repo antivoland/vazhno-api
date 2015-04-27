@@ -2,6 +2,7 @@ package pi.api.vazhno;
 
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.JsonNode;
+import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import java.io.IOException;
@@ -16,9 +17,13 @@ import java.util.Map;
 public class VazhnoAPIRequest {
     private static final String API_URL = "https://api.vazhno.me";
     private static final Logger log = Logger.getLogger(VazhnoAPIRequest.class);
+    private static final ObjectMapper mapper = new ObjectMapper();
+
+    {
+        mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    }
 
     private final Map<String, String> data;
-    private final ObjectMapper mapper = new ObjectMapper();
 
     private VazhnoAPIRequest(Map<String, String> data) {
         this.data = data;
