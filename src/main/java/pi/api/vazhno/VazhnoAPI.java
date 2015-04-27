@@ -57,4 +57,13 @@ public class VazhnoAPI {
                 .build();
         return request.send(VazhnoAPIResponse.Policies.class);
     }
+
+    public VazhnoAPIResponse.Cars cars(String token) throws VazhnoAPIException {
+        VazhnoAPIRequest request = new VazhnoAPIRequest.Builder()
+                .method("dictionary")
+                .procedure("cars")
+                .token(token)
+                .build();
+        return request.send(VazhnoAPIResponse.Cars.class);
+    }
 }

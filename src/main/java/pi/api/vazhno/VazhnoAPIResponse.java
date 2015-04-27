@@ -1,6 +1,7 @@
 package pi.api.vazhno;
 
 import java.util.List;
+import java.util.Map;
 
 public class VazhnoAPIResponse {
     public static class Token extends VazhnoAPIResponse {
@@ -62,6 +63,15 @@ public class VazhnoAPIResponse {
         public String date;
         public String token;
         public Number generation;
+    }
+
+    public static class Cars extends VazhnoAPIResponse {
+        public static class Car {
+            public String model;
+            public String type;
+        }
+
+        public Map<String, List<Car>> cars;
     }
 
     public static class Error extends VazhnoAPIResponse {
