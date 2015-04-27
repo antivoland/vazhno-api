@@ -14,11 +14,11 @@ public class VazhnoAPI {
         return request.send(VazhnoAPIResponse.Token.class);
     }
 
-    public VazhnoAPIResponse.Authorize authorize(String email, String password) throws VazhnoAPIException {
+    public VazhnoAPIResponse.Authorize authorize(String token, String email, String password) throws VazhnoAPIException {
         VazhnoAPIRequest request = new VazhnoAPIRequest.Builder()
                 .method("authorization")
                 .procedure("authorize")
-                .token(token().token)
+                .token(token)
                 .data("email", email)
                 .data("password", password)
                 .build();
@@ -29,7 +29,7 @@ public class VazhnoAPI {
         VazhnoAPIRequest request = new VazhnoAPIRequest.Builder()
                 .method("authorization")
                 .procedure("registration")
-                .token(token().token)
+                .token(token().token) // todo: reuse token
                 .data("name", name)
                 .data("lastname", lastname)
                 .data("middlename", middlename)
@@ -38,5 +38,15 @@ public class VazhnoAPI {
                 .data("password", password)
                 .build();
         return request.send(VazhnoAPIResponse.Register.class);
+    }
+
+    // todo: do something with data
+    public VazhnoAPIResponse.Info user(String token) throws VazhnoAPIException {
+        VazhnoAPIRequest request = new VazhnoAPIRequest.Builder()
+                .method("authorization")
+                .procedure("registration")
+                .token(token)
+                .build();
+        return request.send(VazhnoAPIResponse.Info.class);
     }
 }

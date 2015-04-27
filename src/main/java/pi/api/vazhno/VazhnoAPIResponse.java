@@ -13,6 +13,7 @@ public class VazhnoAPIResponse {
             public String email;
             public String name;
             public String lastname;
+            public String activated;
         }
 
         public User user;
@@ -26,6 +27,22 @@ public class VazhnoAPIResponse {
             public String email;
             public String name;
             public String lastname;
+            public String activated;
+        }
+
+        public User user;
+        public String date;
+        public String token;
+        public Number generation;
+    }
+
+    public static class Info extends VazhnoAPIResponse {
+        public static class User {
+            public String id;
+            public String email;
+            public String name;
+            public String lastname;
+            public String activated;
         }
 
         public User user;
