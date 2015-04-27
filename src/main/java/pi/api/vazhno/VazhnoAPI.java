@@ -40,13 +40,21 @@ public class VazhnoAPI {
         return request.send(VazhnoAPIResponse.Register.class);
     }
 
-    // todo: do something with data
     public VazhnoAPIResponse.Info user(String token) throws VazhnoAPIException {
         VazhnoAPIRequest request = new VazhnoAPIRequest.Builder()
                 .method("authorization")
-                .procedure("registration")
+                .procedure("information")
                 .token(token)
                 .build();
         return request.send(VazhnoAPIResponse.Info.class);
+    }
+
+    public VazhnoAPIResponse.Policies policies(String token) throws VazhnoAPIException {
+        VazhnoAPIRequest request = new VazhnoAPIRequest.Builder()
+                .method("policy")
+                .procedure("list.policies")
+                .token(token)
+                .build();
+        return request.send(VazhnoAPIResponse.Policies.class);
     }
 }

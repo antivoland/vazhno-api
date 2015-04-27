@@ -1,5 +1,7 @@
 package pi.api.vazhno;
 
+import java.util.List;
+
 public class VazhnoAPIResponse {
     public static class Token extends VazhnoAPIResponse {
         public String date;
@@ -46,6 +48,17 @@ public class VazhnoAPIResponse {
         }
 
         public User user;
+        public String date;
+        public String token;
+        public Number generation;
+    }
+
+    public static class Policies extends VazhnoAPIResponse {
+        public static class Policy {
+            public String id;
+        }
+
+        public List<Policy> policies;
         public String date;
         public String token;
         public Number generation;
