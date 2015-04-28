@@ -33,6 +33,7 @@ public class VazhnoAPIRequestForm {
         public Number keys;
     }
 
+    // todo: walk recursive, make plain
     public Map<String, String> serialize() {
         Map<String, String> serialized = new HashMap<>();
         for (Field f : getClass().getDeclaredFields()) {
