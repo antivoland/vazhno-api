@@ -75,4 +75,14 @@ public class VazhnoAPI {
                 .build();
         return request.send(VazhnoAPIResponse.KaskoRisks.class);
     }
+
+    public VazhnoAPIResponse.CalculateKaskoFull calculateKaskoFull(String token, VazhnoAPIRequestForm.CalculateKaskoFull calculateKaskoFull) throws VazhnoAPIException {
+        VazhnoAPIRequest request = new VazhnoAPIRequest.Builder()
+                .method("calculation")
+                .procedure("kasko.full")
+                .token(token)
+                .data(calculateKaskoFull)
+                .build();
+        return request.send(VazhnoAPIResponse.CalculateKaskoFull.class);
+    }
 }

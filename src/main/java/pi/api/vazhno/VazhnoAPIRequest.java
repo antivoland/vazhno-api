@@ -76,6 +76,14 @@ public class VazhnoAPIRequest {
             return this;
         }
 
+        public Builder data(VazhnoAPIRequestForm form) {
+            Map<String, String> serialized = form.serialize();
+            for (String key : serialized.keySet()) {
+                data.put(key, serialized.get(key));
+            }
+            return this;
+        }
+
         public Builder token(String token) {
             data.put("token", token);
             return this;

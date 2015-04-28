@@ -97,6 +97,8 @@ public class VazhnoAPIResponse {
         public List<Risk> risks;
     }
 
+    public static class CalculateKaskoFull extends VazhnoAPIResponse {}
+
     public static class Error extends VazhnoAPIResponse {
         public String type;
         public Number code;
