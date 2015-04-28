@@ -66,4 +66,13 @@ public class VazhnoAPI {
                 .build();
         return request.send(VazhnoAPIResponse.Cars.class);
     }
+
+    public VazhnoAPIResponse.KaskoRisks kaskoRisks(String token) throws VazhnoAPIException {
+        VazhnoAPIRequest request = new VazhnoAPIRequest.Builder()
+                .method("dictionary")
+                .procedure("risks.kasko.full")
+                .token(token)
+                .build();
+        return request.send(VazhnoAPIResponse.KaskoRisks.class);
+    }
 }

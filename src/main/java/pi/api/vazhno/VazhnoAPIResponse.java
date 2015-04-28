@@ -74,6 +74,29 @@ public class VazhnoAPIResponse {
         public Map<String, List<Car>> cars;
     }
 
+    public static class KaskoRisks extends VazhnoAPIResponse {
+        public static class Risk {
+            public String name;
+            public String caption;
+            public String hint;
+            public Object price; // todo: neither int neither array
+            public Number max_price;
+            public Number default_price;
+            public List<String> options;
+            public Map<String, List<String>> sub_option;
+            public List<Wheels> options_wheels;
+            public String text_info;
+        }
+
+        public static class Wheels {
+            public String checkbox;
+            public Integer max_price;
+            public Integer default_price;
+        }
+
+        public List<Risk> risks;
+    }
+
     public static class Error extends VazhnoAPIResponse {
         public String type;
         public Number code;
