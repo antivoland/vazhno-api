@@ -1,4 +1,4 @@
-package pi.api.vazhno;
+package me.vazhno.api;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;

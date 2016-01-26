@@ -1,4 +1,4 @@
-package pi.api.vazhno;
+package me.vazhno.api;
 
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.JsonNode;

@@ -1,4 +1,4 @@
-package pi.api.vazhno;
+package me.vazhno.api;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

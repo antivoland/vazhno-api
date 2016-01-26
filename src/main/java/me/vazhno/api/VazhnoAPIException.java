@@ -1,4 +1,4 @@
-package pi.api.vazhno;
+package me.vazhno.api;
 
 public class VazhnoAPIException extends Exception {
     public VazhnoAPIException(VazhnoAPIResponse.Error error) {
